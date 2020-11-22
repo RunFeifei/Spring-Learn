@@ -10,11 +10,11 @@ public interface UserMapper {
 
     UserEntity getUserDetail(Long userid);
 
-    void userLogin(UserEntity userEntity);
+    UserEntity userLogin(UserEntity userEntity);
 
     void userLogout(UserEntity userEntity);
 
-    UserEntity userUpdate(UserEntity userEntity);
+    void userUpdate(UserEntity userEntity);
 
-    UserEntity userRegister(UserEntity userEntity);
+    void userRegister(UserEntity userEntity);
 }

@@ -27,9 +27,9 @@
     <insert id="userRegister" parameterType="com.fei.run.model.UserEntity">
        INSERT INTO 
        		users
-       		(nick_name,password)
+       		(user_id,nick_name,password)
        	VALUES
-       		(#{nickName}, #{passWord})
+       		(#{userId},#{nickName}, #{passWord})
     </insert>
 
     <select id="userLogin" parameterType="com.fei.run.model.UserEntity" resultMap="BaseResultMap">
@@ -43,11 +43,11 @@
         UPDATE
         users
         SET
-        <if test="userName != null">nick_name = #{nickName},</if>
+        <if test="nickName != null">nick_name = #{nickName},</if>
         <if test="passWord != null">password = #{passWord},</if>
         nick_name = #{nickName}
         WHERE
-        id = #{id}
+        user_id = #{userId}
     </update>
 
 

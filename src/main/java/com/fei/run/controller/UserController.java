@@ -25,8 +25,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/userLogin", method = RequestMethod.POST)
-    public void userLogin(@ModelAttribute UserEntity userEntity) {
-        userMapper.userLogin(userEntity);
+    public UserEntity userLogin(@ModelAttribute UserEntity userEntity) {
+        return userMapper.userLogin(userEntity);
     }
 
     @RequestMapping(value = "/userLogout", method = RequestMethod.POST)
@@ -36,12 +36,14 @@ public class UserController {
 
     @RequestMapping(value = "/userUpdate", method = RequestMethod.POST)
     public UserEntity userUpdate(@ModelAttribute UserEntity userEntity) {
-        return userMapper.userUpdate(userEntity);
+        userMapper.userUpdate(userEntity);
+        return userEntity;
     }
 
     @RequestMapping(value = "/userRegister", method = RequestMethod.POST)
     public UserEntity userRegister(@ModelAttribute UserEntity userEntity) {
-        return userMapper.userRegister(userEntity);
+        userMapper.userRegister(userEntity);
+        return userEntity;
     }
 
 
