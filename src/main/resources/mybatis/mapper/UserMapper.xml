@@ -39,6 +39,14 @@
         WHERE nick_name = #{nickName} AND password = #{passWord}
     </select>
 
+    <select id="userLogout" parameterType="com.fei.run.model.UserEntity" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM users
+        WHERE nick_name = #{nickName} AND password = #{passWord}
+    </select>
+
+
     <update id="userUpdate" parameterType="com.fei.run.model.UserEntity">
         UPDATE
         users
