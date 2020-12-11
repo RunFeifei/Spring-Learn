@@ -1,6 +1,7 @@
 package com.fei.run.security;
 
 
+import com.fei.run.security.filter.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -23,13 +24,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.cors().and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/login").permitAll()
+                .antMatchers(SecurityConstant.LOGIN_WHITELIST).permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .addFilter()
+                .addFilter(new JwtAuthenticationFilter(authenticationManager()))
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
     }
 
     @Override
@@ -37,7 +37,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication()
                 .withUser("feifei")
                 .password(passwordEncoder().encode("password"))
-                .authorities("ROLE_USER");
+                .authorities(UserRole.ADMIN.getType());
     }
 
     @Bean
